@@ -1,0 +1,48 @@
+name: Playwright Tests
+ 
+variables:
+  CI: true
+ 
+trigger:
+  - master
+ 
+jobs:
+  - job: test
+    timeoutInMinutes: 60
+    pool:
+      vmImage: "ubuntu-latest"
+ 
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "20.5.x"
+        displayName: "Install Node.js"
+ 
+      - script: |
+          npm ci
+        displayName: "Install dependencies"
+ 
+      - script: |
+          npx playwright install --with-deps
+        displayName: "Install Playwright Browsers"
+ 
+      - script: |
+          npx playwright test
+        displayName: "Run Playwright tests"
+ 
+      # Publish Test Results
+      - task: PublishTestResults@2
+        inputs:
+          testResultsFormat: "JUnit"  # Change this if you are using a different test results format
+          testResultsFiles: "**/results.xml"  # Update the file path if needed
+          searchFolder: "$(System.DefaultWorkingDirectory)"
+        displayName: "Publish Test Results"
+        condition: succeededOrFailed()
+      
+  # Add a new job to publish test artifacts when there are test failures
+  - job: publishTestArtifacts
+    dependsOn: test
+    condition: eq(dependencies.test.result, 'Failed')  # Only run this job if the 'test' job failed
+    timeoutInMinutes: 10
+    pool:
+      vmImage: "ubuntu-latest"

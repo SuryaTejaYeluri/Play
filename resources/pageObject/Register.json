@@ -1,0 +1,16 @@
+{
+    "pO_Register": {
+        "txtFirstName": "//input[@placeholder='First Name']",
+        "txtLastName": "//input[@placeholder='Last Name']",
+        "txtAddress": "//div[label[text()='Address']]//textarea",
+        "txtEmail": "//input[@type='email']",
+        "txtPhone": "//input[@type='tel']",
+        "chkbxGender_byValue": "//input[@type='radio' and @value='<Gender>']",        
+        "chkbxHobby_byName": "//input[@type='checkbox' and @value='<Hobby>']",
+        "drpdwnLanguage": "#msdd",
+        "optnLanguage_byText": "//*[@id='msdd']//following-sibling::div//a[text()='<Language>']",
+        "txtPassword": "#firstpassword",
+        "txtConfirmPassword": "#secondpassword",
+        "btnSubmit": "#submitbtn"
+    }
+}

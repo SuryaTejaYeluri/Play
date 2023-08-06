@@ -1,0 +1,6 @@
+{
+    "ListUsers": "https://reqres.in/api/users?page=2",
+    "SingleUser": "https://reqres.in/api/users/<userID>",
+    "CreateUser": "https://reqres.in/api/users",
+    "UpdateUser": "https://reqres.in/api/users/2"
+}
