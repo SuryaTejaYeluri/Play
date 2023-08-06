@@ -4,7 +4,7 @@ variables:
   CI: true
  
 trigger:
-  - master
+  - main
  
 jobs:
   - job: test
